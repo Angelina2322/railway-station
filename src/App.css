@@ -1,0 +1,201 @@
+:root {
+  --uz-blue: #003572;
+  --bg-light: #f4f7f6;
+}
+
+body {
+  background-color: var(--bg-light);
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Головна сітка */
+/* Основна сітка для карток (Лаб 9)  */
+.train-grid {
+  display: grid !important;
+  /* repeat(auto-fit...) автоматично створює стільки колонок, скільки влізе в екран  */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 30px !important;
+  width: 100% !important;
+  max-width: 1200px; /* Обмежуємо ширину, щоб на великих моніторах не розтягувалось занадто сильно */
+  margin: 30px auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Картка потяга  */
+.train-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 6px solid #003572;
+  transition: transform 0.3s ease;
+  min-height: 280px; /* Однакова висота для всіх карток  */
+}
+
+.train-card:hover {
+  transform: translateY(-5px);
+}
+
+
+/* Кнопка "Вибрати квиток" */
+.book-btn {
+  background-color: var(--uz-blue) !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  margin-top: auto; /* Притискає кнопку до низу картки */
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Поле пошуку */
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto 40px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Контейнер для всієї сторінки бронювання */
+.booking-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+/* Виправлення сітки місць */
+.seat-grid {
+  display: grid;
+  /* 5 колонок: 2 місця - прохід (aisle) - 2 місця */
+  grid-template-columns: repeat(2, 50px) 30px repeat(2, 50px); 
+  gap: 12px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin: 0 auto;
+}
+
+/* Стиль місця */
+.seat {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Кольори індикації місць за ТЗ */
+.available { background-color: #28a745; color: white; border-color: #218838; } /* вільні - зелений  */
+.selected { background-color: #007bff; color: white; border-color: #0069d9; }  /* обрані - синій  */
+.booked { background-color: #dc3545; color: white; border-color: #c82333; cursor: not-allowed; } /* заброньовані - червоний  */
+
+/* Прохід */
+.aisle {
+  width: 30px;
+}
+
+/* Стиль форми */
+.booking-form-section {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.booking-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.booking-form input {
+  flex: 1 min-width(200px);
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.summary-card {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.wagon-btn {
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.wagon-btn.active {
+  border-color: var(--uz-blue);
+  background-color: #e7f1ff;
+  color: var(--uz-blue);
+  font-weight: bold;
+}
+
+.wagon-btn:hover:not(.active) {
+  border-color: #bbb;
+}
+
+/* Базова сітка для КУПЕ (4 місця в ряд) */
+.seat-grid.kupe {
+  display: grid !important;
+  grid-template-columns: 50px 50px 30px 50px 50px !important;
+  gap: 10px;
+}
+
+/* Сітка для ЛЮКСУ (2 місця в ряд + широкий прохід) */
+.seat-grid.luks {
+  display: grid !important;
+  grid-template-columns: 50px 80px 50px !important; 
+  gap: 15px;
+}
+
+/* Сітка для ПЛАЦКАРТУ */
+.seat-grid.platskart {
+  display: grid !important;
+  grid-template-columns: 50px 50px 40px 50px !important;
+  gap: 10px;
+}
+
+/* Стиль проходу */
+.aisle {
+  width: 100%;
+  height: 50px;
+}
