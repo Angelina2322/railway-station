@@ -7,13 +7,19 @@ import './App.css';
 export const BookingContext = createContext();
 
 function App() {
+  const [selectedSeat, setSelectedSeat] = useState(null);
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/booking/:trainId" element={<Booking />} /> 
-      </Routes>
-    </Router>
+   <BookingContext.Provider value={{ selectedSeat, setSelectedSeat }}>
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} /> 
+            {/* Параметр :trainId дозволяє відкривати сторінку для конкретного потяга */}
+            <Route path="/booking/:trainId" element={<Booking />} /> 
+          </Routes>
+        </Router>
+      </div>
+    </BookingContext.Provider>
   );
 }
 
