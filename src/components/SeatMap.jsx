@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+import { BookingContext } from '../App';
 const SeatMap = ({ capacity, bookedSeats, selectedSeats, onToggle }) => {
   const seats = Array.from({ length: capacity }, (_, i) => i + 1);
 
